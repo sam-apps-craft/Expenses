@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-
 import ManageExpense from "./screens/ManageExpense";
 import RecentExpenses from "./screens/RecentExpenses";
 import AllExpenses from "./screens/AllExpenses";
@@ -25,7 +24,7 @@ function ExpensesOverview() {
         headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
-            size={30}
+            size={24}
             color={tintColor}
             onPress={() => {
               navigation.navigate("ManageExpense");
@@ -63,7 +62,7 @@ function ExpensesOverview() {
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <ExpensesContextProvider>
         <NavigationContainer>
           <Stack.Navigator

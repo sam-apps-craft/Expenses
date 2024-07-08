@@ -1,4 +1,5 @@
 import { FlatList } from "react-native";
+
 import ExpenseItem from "./ExpenseItem";
 
 function renderExpenseItem(itemData) {
@@ -7,7 +8,7 @@ function renderExpenseItem(itemData) {
 
 function ExpensesList({ expenses }) {
   return (
-    <FlatList alwaysBounceHorizontal={false}
+    <FlatList
       data={expenses}
       renderItem={renderExpenseItem}
       keyExtractor={(item) => item.id}

@@ -31,33 +31,55 @@ const DUMMY_EXPENSES = [
     amount: 18.59,
     date: new Date("2022-02-18"),
   },
+  {
+    id: "e6",
+    description: "A pair of trousers",
+    amount: 89.29,
+    date: new Date("2022-01-05"),
+  },
+  {
+    id: "e7",
+    description: "Some bananas",
+    amount: 5.99,
+    date: new Date("2021-12-01"),
+  },
+  {
+    id: "e8",
+    description: "A book",
+    amount: 14.99,
+    date: new Date("2022-02-19"),
+  },
+  {
+    id: "e9",
+    description: "Another book",
+    amount: 18.59,
+    date: new Date("2022-02-18"),
+  },
 ];
 
-export const ExpensesContex = createContext({
+export const ExpensesContext = createContext({
   expenses: [],
   addExpense: ({ description, amount, date }) => {},
   deleteExpense: (id) => {},
-  updateddExpense: (id, { description, amount, date }) => {},
+  updateExpense: (id, { description, amount, date }) => {},
 });
 
 function expensesReducer(state, action) {
   switch (action.type) {
     case "ADD":
-      const id = new Date().toString + Math.random().toString();
+      const id = new Date().toString() + Math.random().toString();
       return [{ ...action.payload, id: id }, ...state];
     case "UPDATE":
-      const updateableExpenseIndex = state.findIndex(
+      const updatableExpenseIndex = state.findIndex(
         (expense) => expense.id === action.payload.id
       );
-      const updateableExpense = state[updateableExpenseIndex];
-      const updatedItem = { ...updateableExpense, ...action.payload.data };
+      const updatableExpense = state[updatableExpenseIndex];
+      const updatedItem = { ...updatableExpense, ...action.payload.data };
       const updatedExpenses = [...state];
-      updatedExpenses[updateableExpenseIndex] = updatedItem;
+      updatedExpenses[updatableExpenseIndex] = updatedItem;
       return updatedExpenses;
-
     case "DELETE":
       return state.filter((expense) => expense.id !== action.payload);
-
     default:
       return state;
   }
@@ -86,7 +108,9 @@ function ExpensesContextProvider({ children }) {
   };
 
   return (
-    <ExpensesContext.provier value={value}>{children}</ExpensesContext.provier>
+    <ExpensesContext.Provider value={value}>
+      {children}
+    </ExpensesContext.Provider>
   );
 }
 
