@@ -83,7 +83,6 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
           label="Date"
           invalid={!inputs.date.isValid}
           textInputConfig={{
-            
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
   },
 
   descriptionInput: {
-    marginTop: 30,
+    marginTop: 10,
   },
 
   buttons: {
@@ -163,6 +162,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: GlobalStyles.colors.error500,
     margin: 8,
-    fontSize: 20
+    fontSize: 20,
   },
 });
