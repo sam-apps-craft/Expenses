@@ -4,6 +4,7 @@ import { getFormattedDate } from "../../utility/date";
 
 import Input from "./Input";
 import Button from "../UI/Button";
+import { GlobalStyles } from "../../constants/styles";
 
 function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
   const [inputs, setInputs] = useState({
@@ -70,6 +71,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
         <Input
           style={styles.rowInput}
           label="Amount"
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangedHandler.bind(this, "amount"),
@@ -79,8 +81,9 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
         <Input
           style={styles.rowInput}
           label="Date"
+          invalid={!inputs.date.isValid}
           textInputConfig={{
-            keyboardType: "decimal-pad",
+            
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
             onChangeText: inputChangedHandler.bind(this, "date"),
@@ -92,6 +95,7 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
       <View style={styles.descriptionInput}>
         <Input
           label="Description"
+          invalid={!inputs.description.isValid}
           textInputConfig={{
             multiline: true,
             onChangeText: inputChangedHandler.bind(this, "description"),
@@ -101,7 +105,9 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
       </View>
 
       {formIsInvalid && (
-        <Text>Invalid input values - please check your enteredd data</Text>
+        <Text style={styles.errorText}>
+          Invalid input values - please check your entered data
+        </Text>
       )}
 
       <View style={styles.buttons}>
@@ -151,5 +157,12 @@ const styles = StyleSheet.create({
     minWidth: 120,
     marginHorizontal: 8,
     marginTop: 40,
+  },
+
+  errorText: {
+    textAlign: "center",
+    color: GlobalStyles.colors.error500,
+    margin: 8,
+    fontSize: 20
   },
 });
