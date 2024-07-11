@@ -52,13 +52,16 @@ function ExpenseForm({ onCancel, onSubmit, submitButtonLabel, defaultValues }) {
           },
         };
       });
+      return;
     }
 
     onSubmit(expenseData);
   }
 
   const formIsInvalid =
-    !inputs.amountisValid || !inputs.dateisValid || !inputs.descriptionisValid;
+    !inputs.amount.isValid ||
+    !inputs.date.isValid ||
+    !inputs.description.isValid;
 
   return (
     <View style={styles.form}>
